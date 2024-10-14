@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ivTitle = findViewById(R.id.ivTitle);
-        String url = "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_640.jpg";
+//        String url = "https://cdn.pixabay.com/photo/2024/02/28/07/42/european-shorthair-8601492_640.jpg";
+        String url = "https://api-pv211-android.itstep.click/images/1.jpg";
 
         Glide.with(this)
                 .load(url)
