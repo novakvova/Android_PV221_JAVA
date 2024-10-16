@@ -41,7 +41,14 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     // https://mvnrepository.com/artifact/com.github.bumptech.glide/glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+    implementation(libs.retrofit)
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
+    implementation(libs.converter.gson)
+// https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
+    implementation(libs.logging.interceptor)
 
 }
