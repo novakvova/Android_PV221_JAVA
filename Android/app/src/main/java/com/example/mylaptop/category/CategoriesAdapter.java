@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.mylaptop.R;
+import com.example.mylaptop.constants.Urls;
 import com.example.mylaptop.dto.CategoryItemDTO;
 
 import java.util.List;
@@ -35,11 +37,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
         if(items!=null && position<items.size()) {
             CategoryItemDTO item = items.get(position);
             holder.getCategoryName().setText(item.getName());
-            String url = item.getImage();
+            String url = Urls.BASE+"/images/600_"+ item.getImage();
 
             Glide.with(holder.itemView.getContext())
                     .load(url)
-                    //.apply(new RequestOptions().override(400))
+//                    .apply(new RequestOptions().override(600))
                     .into(holder.getIvCategoryImage());
 
         }
