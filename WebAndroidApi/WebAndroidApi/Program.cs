@@ -5,6 +5,7 @@ using Microsoft.Extensions.FileProviders;
 using WebAndroidApi.Data;
 using WebAndroidApi.Data.Entities;
 using WebAndroidApi.Interfaces;
+using WebAndroidApi.Mapper;
 using WebAndroidApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<MyStoreContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IImageWorker, ImageWorker>();
+
+builder.Services.AddAutoMapper(typeof(AppMapProfile));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

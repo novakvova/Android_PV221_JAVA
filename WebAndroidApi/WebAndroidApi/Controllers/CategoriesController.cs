@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebAndroidApi.Data;
 using WebAndroidApi.Models.Category;
 
 namespace WebAndroidApi.Controllers
@@ -8,29 +11,23 @@ namespace WebAndroidApi.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private static List<CategoryItemViewModel> _categories;
-        public CategoriesController()
+        public readonly MyStoreContext _context;
+        public readonly IMapper _mapper;
+
+        public CategoriesController(MyStoreContext context, IMapper mapper)
         {
-            _categories = new List<CategoryItemViewModel>()
-            {
-                new CategoryItemViewModel
-                {
-                    Id = 1,
-                    Name = "Тривалі в роботі",
-                    Image = "https://content1.rozetka.com.ua/goods/images/big/434340428.jpg"
-                },
-                new CategoryItemViewModel
-                {
-                    Id = 2,
-                    Name = "Intel EVO",
-                    Image = "https://content1.rozetka.com.ua/goods/images/big/368124548.jpg"
-                },
-            };
+            _context = context;
+            _mapper = mapper;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            return Ok(_categories);
+            var model = await _context.Categories
+                .ProjectTo<CategoryItemViewModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+
+            return Ok(model);
         } 
     }
 }
