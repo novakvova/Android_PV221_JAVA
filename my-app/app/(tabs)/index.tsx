@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Platform } from 'react-native';
 
+import { router } from 'expo-router'
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -9,10 +10,11 @@ import axios from "axios";
 
 export default function HomeScreen() {
     useEffect(() => {
-        axios.get("https://api-pv211-android.itstep.click/api/categories")
-            .then(resp=> {
-                console.log("Result server", resp.data);
-            });
+        // axios.get("https://api-pv211-android.itstep.click/api/categories")
+        //     .then(resp=> {
+        //         console.log("Result server", resp.data);
+        //     });
+        // router.push('/(auth)/sign-in');
     },[]);
   return (
     <ParallaxScrollView
