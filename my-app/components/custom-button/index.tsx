@@ -19,11 +19,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                                                        isDisabled = false,
                                                        ...props
                                                    }) => {
+
+    console.log("ContainerStyles", containerStyles);
     return (
         <TouchableOpacity
             onPress={handlePress}
             activeOpacity={0.7}
-            className={`bg-secondary rounded-xl  min-h-[50px] flex flex-row justify-center items-center ${containerStyles} ${isLoading || isDisabled ? 'opacity-50' : '' }`}
+            className={`bg-secondary min-h-[50px] flex flex-row justify-center items-center ${containerStyles} ${isLoading || isDisabled ? 'opacity-50' : '' }`}
             disabled={isLoading || isDisabled}
             {...props}>
             <Text className={`text-primary font-psemibold text-lg ${textStyles}`}>{title}</Text>
