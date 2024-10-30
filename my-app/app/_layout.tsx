@@ -1,43 +1,23 @@
-import "../global.css"
-import {DarkTheme, DefaultTheme, ThemeProvider} from '@react-navigation/native';
-import {useFonts} from 'expo-font';
-import {Stack} from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import {useEffect} from 'react';
-import 'react-native-reanimated';
 
-import {useColorScheme} from '@/hooks/useColorScheme';
-import {store} from '@/redux/store'
-import {Provider} from "react-redux";
+import { Stack } from "expo-router";
+import React from "react";
+import '../global.css'
+import FlashMessage from "react-native-flash-message";
+import { store } from '@/redux/store'
+import { Provider } from "react-redux";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-    const colorScheme = useColorScheme();
-    const [loaded] = useFonts({
-        SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    });
+  
+  return (
+    <Provider store={store}>
+        <Stack>
+           <Stack.Screen name="index" options={{ headerShown: false }} />
+           <Stack.Screen name="(main)" options={{ headerShown: false }} />
+           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+         </Stack>
+      <FlashMessage position="bottom" />
+    </Provider>
 
-    useEffect(() => {
-        if (loaded) {
-            SplashScreen.hideAsync();
-        }
-    }, [loaded]);
-
-    if (!loaded) {
-        return null;
-    }
-
-    return (
-        <Provider store={store}>
-            <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-                    <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-                    <Stack.Screen name="+not-found"/>
-                </Stack>
-            </ThemeProvider>
-        </Provider>
-    );
+  );
 }
