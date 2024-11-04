@@ -10,5 +10,7 @@ namespace WebAndroid.Data
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<EntityUser> EntityUsers { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<ProductImageEntity> ProductImages { get; set; }
     }
 }
