@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using WebAndroid.Data.Entities;
-using WebAndroid.DTO;
-using WebAndroid.Models;
 using WebAndroid.Models.Product;
 
 namespace WebAndroid.Mappers

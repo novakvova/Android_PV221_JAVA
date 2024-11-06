@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WebAndroid.Data;
 using WebAndroid.Data.Entities;
+using WebAndroid.Data;
 using WebAndroid.Interfaces;
 using WebAndroid.Models.Product;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper.QueryableExtensions;
 
 namespace WebAndroid.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController(
-        AndroidDbContext context, IImageService imageHulk,
-        IMapper mapper) : ControllerBase
+       AndroidDbContext context, IImageService imageHulk,
+       IMapper mapper) : ControllerBase
     {
         [HttpGet]
         public IActionResult GetList()
@@ -23,6 +23,7 @@ namespace WebAndroid.Controllers
                 .ToList();
             return Ok(list);
         }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] ProductCreateViewModel model)
         {
@@ -43,8 +44,8 @@ namespace WebAndroid.Controllers
                     };
                     p++;
                     context.ProductImages.Add(pi);
-                    await context.SaveChangesAsync();
                 }
+                await context.SaveChangesAsync();
             }
             return Created();
         }
@@ -111,7 +112,6 @@ namespace WebAndroid.Controllers
                     context.ProductImages.Remove(img);
                 }
             }
-
             ///Нові фотки для товару - я де пріорітет - мабуть забулися
             if (model.NewImages != null)
             {
@@ -136,3 +136,4 @@ namespace WebAndroid.Controllers
         }
     }
 }
+        

@@ -30,9 +30,9 @@ export const Header: React.FC = () => {
         console.log('LogOut')
     }
     return (
-        <div className='h-[60px] bg-header sticky top-0 items-center flex-shrink-0 flex justify-between'  >
+        <div className='h-[60px] bg-header sticky top-0 items-center flex-shrink-0 flex justify-between z-50'  >
             <div className='flex gap-6 items-center'>
-                <Image className='ml-3' width={46} src={Images.adminPanelImage} />
+                <Avatar  className='ml-3' size={46} src={Images.adminPanelImage} />
                 <span>Адмінпанель</span>
             </div>
             <div className='flex gap-7 h-full'>

@@ -12,8 +12,8 @@ using WebAndroid.Data;
 namespace WebAndroid.Migrations
 {
     [DbContext(typeof(AndroidDbContext))]
-    [Migration("20241104163556_AddProductsInfo")]
-    partial class AddProductsInfo
+    [Migration("20241104163616_AddProducts")]
+    partial class AddProducts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

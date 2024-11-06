@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WebAndroid.Migrations
 {
     /// <inheritdoc />
-    public partial class AddProductsInfo : Migration
+    public partial class AddProducts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

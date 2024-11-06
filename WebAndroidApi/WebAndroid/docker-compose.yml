@@ -6,17 +6,17 @@ networks:
 services:
   postgresServerDb:
     container_name: container-postgres
-    image: postgres:16.1
+    image: postgres:latest
     ports:
       - "5022:5432"
     environment:
-      - POSTGRES_USER=krot
-      - POSTGRES_PASSWORD=p%rSDj4Imds07djc**dmUntdOidd3dZ_#WTi4B9Zo
+      - POSTGRES_USER=user_1
+      - POSTGRES_PASSWORD=pass_123
       - POSTGRES_DB=androidDb
     networks:
       - myAppNetwork
     volumes:
-#       - d:/web/pv221/postgresql:/var/lib/postgresql/data  # Use the volume name msvol here
+#       - d:/web/pd322/postgresql:/var/lib/postgresql/data  # Use the volume name msvol here
         - /data/postgresql/data:/var/lib/postgresql/data
     deploy:
       restart_policy:
@@ -25,18 +25,14 @@ services:
 
   app:
     container_name: android_api_container
-#    build:
-#     context: .
-#     dockerfile: Dockerfile
-    image: novakvova/pv211-android-api:latest
+    image: sashok9203/my_android_api:latest
     ports:
-      - "5280:8080"
+      - "5088:8080"
     networks:
       - myAppNetwork
     depends_on:
       - postgresServerDb
     volumes:
-#      - d:/web/pv221/uploading:/app/uploading   # Use the volume name appvol here
       - /volumes/aspnet/uploading:/app/uploading   # Use the volume name appvol here
     deploy:
       restart_policy:
