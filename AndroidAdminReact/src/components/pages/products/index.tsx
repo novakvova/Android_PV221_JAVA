@@ -18,12 +18,16 @@ const columns = [
         title: 'Фото',
         dataIndex: 'image',
         key: 'image',
-        render: (_text: string, record: TableCategoryData) =>
-            <Image.PreviewGroup
-                items={record.images.map(x => APP_ENV.IMAGES_800_URL + x)}>
-                <Image width={100} src={record.images[0] ? APP_ENV.IMAGES_200_URL + record.images[0] : Images.noImage} />,
-            </Image.PreviewGroup>,
-        width: '120px'
+        render: (_text: string, record: TableProductData) =>
+            <div className="flex  items-center">
+                <Image.PreviewGroup
+                    items={record.images.map(x => APP_ENV.IMAGES_800_URL + x)}>
+                    <Image className="self-center" width={100} src={record.images[0] ? APP_ENV.IMAGES_200_URL + record.images[0] : Images.noImage} />,
+                </Image.PreviewGroup>
+            </div>
+        ,
+        width: '120px',
+
     },
     {
         title: 'Назва',
@@ -34,7 +38,7 @@ const columns = [
         title: 'Категорія',
         dataIndex: 'category',
         key: 'category',
-        render: (name: string, record: TableCategoryData) =>
+        render: (name: string, record: TableProductData) =>
             <div className="flex gap-4 items-center">
                 <Avatar size={48} src={record.categoryImage ? APP_ENV.IMAGES_200_URL + record.categoryImage : Images.noImage} />
                 <span>{name}</span>
@@ -45,13 +49,13 @@ const columns = [
         dataIndex: 'price',
         key: 'price',
         width: '120px',
-        render: (price: string) =><span>{price} грн.</span>
-            
+        render: (price: string) => <span>{price} грн.</span>
+
     },
 
 ];
 
-interface TableCategoryData {
+interface TableProductData {
     id: number,
     name: string,
     price: number,
@@ -61,7 +65,7 @@ interface TableCategoryData {
 }
 
 export const ProductTable: React.FC = () => {
-    const { data: products} = useGetAllProductsQuery();
+    const { data: products } = useGetAllProductsQuery();
     const { data: categories } = useGetAllCategoriesQuery();
     const navigate = useNavigate();
 
@@ -78,10 +82,10 @@ export const ProductTable: React.FC = () => {
                 onClick={addProduct} />
             <div className="bg-white p-5">
 
-                <Table<TableCategoryData>
+                <Table<TableProductData>
                     className="pt-3 "
                     columns={columns}
-                    dataSource={products?.map<TableCategoryData>(x => ({
+                    dataSource={products?.map<TableProductData>(x => ({
                         id: x.id,
                         name: x.name,
                         price: x.price,
