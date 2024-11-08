@@ -1,7 +1,7 @@
 import { Images } from '../../../constants/images'
 import { BellOutlined, DownOutlined, LogoutOutlined, MailOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import './Header.css'
-import { Avatar, Badge, Dropdown, Image, MenuProps } from 'antd'
+import { Avatar, Badge, Dropdown, MenuProps } from 'antd'
 import { Link } from 'react-router-dom';
 export const Header: React.FC = () => {
     const items: MenuProps['items'] = [

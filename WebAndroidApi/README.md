@@ -1,39 +1,39 @@
-# pv211-android
+# pv221-android
 Create docker hub repository - publish
 ```
-docker build -t pv211-android-api . 
-docker run -it --rm -p 5280:80 --name pv211-android_container pv211-android-api
-docker run -d --restart=always --name pv211-android_container -p 5280:80 pv211-android-api
-docker run -d --restart=always -v d:/volumes/pv211-android/uploading:/app/uploading --name pv211-android_container -p 5280:80 pv211-android-api
-docker run -d --restart=always -v /volumes/pv211-android/uploading:/app/uploading --name pv211-android_container -p 5280:80 pv211-android-api
+docker build -t pv221-android-api . 
+docker run -it --rm -p 5280:8080 --name pv221-android_container pv221-android-api
+docker run -d --restart=always --name pv221-android_container -p 5280:8080 pv221-android-api
+docker run -d --restart=always -v d:/volumes/pv221-android/uploading:/app/uploading --name pv221-android_container -p 5280:8080 pv221-android-api
+docker run -d --restart=always -v /volumes/pv221-android/uploading:/app/uploading --name pv221-android_container -p 5280:8080 pv221-android-api
 docker ps -a
 
-docker stop pv211-android_container
-docker rm pv211-android_container
+docker stop pv221-android_container
+docker rm pv221-android_container
 
 docker images --all
-docker rmi pv211-android-api
+docker rmi pv221-android-api
 
 docker login
-docker tag pv211-android-api:latest novakvova/pv211-android-api:latest
-docker push novakvova/pv211-android-api:latest
-docker pull novakvova/pv211-android-api:latest
+docker tag pv221-android-api:latest novakvova/pv221-android-api:latest
+docker push novakvova/pv221-android-api:latest
+docker pull novakvova/pv221-android-api:latest
 
 docker ps -a
-docker run -d --restart=always --name pv211-android_container -p 5280:80 novakvova/pv211-android-api
-docker run -d --restart=always -v /volumes/pv211-android/uploading:/app/uploading --name pv211-android_container -p 5280:80 novakvova/pv211-android-api
-docker pull novakvova/pv211-android-api:latest
+docker run -d --restart=always --name pv221-android_container -p 5280:8080 novakvova/pv221-android-api
+docker run -d --restart=always -v /volumes/pv221-android/uploading:/app/uploading --name pv221-android_container -p 5280:8080 novakvova/pv221-android-api
+docker pull novakvova/pv221-android-api:latest
 docker images --all
 docker ps -a
 
-docker stop pv211-android_container
-docker rm pv211-android_container
-docker run -d --restart=always --name pv211-android_container -p 5280:80 novakvova/pv211-android-api
+docker stop pv221-android_container
+docker rm pv221-android_container
+docker run -d --restart=always --name pv221-android_container -p 5280:8080 novakvova/pv221-android-api
 ```
 
 ```nginx options /etc/nginx/sites-available/default
 server {
-    server_name   api-pv211-android.itstep.click *.api-pv211-android.itstep.click;
+    server_name   api-pv221-android.itstep.click *.api-pv221-android.itstep.click;
     location / {
        proxy_pass         http://localhost:5280;
        proxy_http_version 1.1;

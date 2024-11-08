@@ -1,4 +1,4 @@
-import { Menu, MenuProps, theme } from "antd";
+import { Menu, MenuProps } from "antd";
 import {  ProfileOutlined,  SettingOutlined,  SkinOutlined } from '@ant-design/icons';
 import './Menu.css'
 import { Link, useLocation } from "react-router-dom";
@@ -30,7 +30,7 @@ export const SideBarMenu: React.FC = () => {
             icon: <ProfileOutlined style={{fontSize:20}}/> ,
             label: <Link className='link' to="/categories"><span className='text-lg font-medium'>Категорії</span></Link>,
         },
-        
+
         {
             key: "/settings",
             icon: <SettingOutlined style={{fontSize:20}}/>,

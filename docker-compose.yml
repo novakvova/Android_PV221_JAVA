@@ -12,11 +12,11 @@ services:
     environment:
       - POSTGRES_USER=krot
       - POSTGRES_PASSWORD=p%rSDj4Imds07djc**dmUntdOidd3dZ_#WTi4B9Zo
-      - POSTGRES_DB=androidDb
+      - POSTGRES_DB=AndroidPV221
     networks:
       - myAppNetwork
     volumes:
-#       - d:/web/pv221/postgresql:/var/lib/postgresql/data  # Use the volume name msvol here
+#       - d:/web/pd322/postgresql:/var/lib/postgresql/data  # Use the volume name msvol here
         - /data/postgresql/data:/var/lib/postgresql/data
     deploy:
       restart_policy:
@@ -24,11 +24,8 @@ services:
         max_attempts: 5
 
   app:
-    container_name: android_api_container
-#    build:
-#     context: .
-#     dockerfile: Dockerfile
-    image: novakvova/pv211-android-api:latest
+    container_name: web_pv221_container
+    image: novakvova/pv221-android-api
     ports:
       - "5280:8080"
     networks:
@@ -36,11 +33,16 @@ services:
     depends_on:
       - postgresServerDb
     volumes:
-#      - d:/web/pv221/uploading:/app/uploading   # Use the volume name appvol here
-      - /volumes/aspnet/uploading:/app/uploading   # Use the volume name appvol here
+     - /volumes/pv211-android/uploading:/app/uploading  # Use the volume name appvol here
     deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 5
   
-  
+  client:
+    container_name: reactpv221_client_container
+    image: novakvova/reactpv221-client
+    ports:
+      - "5072:80"
+      
+
